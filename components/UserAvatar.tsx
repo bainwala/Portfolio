@@ -6,21 +6,23 @@ function UserAvatar({
   image,
   className,
 }: {
-  name: string;
-  image: string;
+  name?: string | null;
+  image?: string | null;
   className?: string;
 }) {
   return (
     <Avatar className={cn("bg-white text-black", className)}>
-      <AvatarImage src={image} />
+      <AvatarImage src={image ? image : ""} />
       <AvatarFallback
         delayMs={1000}
         className={"dark:bg-white dark:text-black text-lg"}
       >
         {name
-          .split(" ")
-          .map((n) => n[0])
-          .join("")}
+          ? name
+              .split(" ")
+              .map((n) => n[0])
+              .join("")
+          : ""}
       </AvatarFallback>
     </Avatar>
   );
